@@ -30,7 +30,7 @@ BookNest is a full-stack web application where users can:
 - **Axios / Fetch API** — HTTP requests
 - **Recharts** — data visualization
 
-### Backend
+### Backend 
 - **Node.js**
 - **Express.js**
 - **MongoDB** with **Mongoose ODM**
