@@ -11,7 +11,10 @@
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
     "axios": "^1.16.1",
+<<<<<<< HEAD
     "lucide-react": "^1.14.0",
+=======
+>>>>>>> 69d28c4e103dace9054a3d7f272e4abe84ad81de
     "next": "16.2.6",
     "react": "19.2.4",
     "react-dom": "19.2.4",
