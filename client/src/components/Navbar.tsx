@@ -14,20 +14,24 @@ export default function Navbar() {
           <Link href="/dashboard" className="hover:text-indigo-600">
             Dashboard
           </Link>
+
           <Link href="/books" className="hover:text-indigo-600">
             Books
           </Link>
+
           <Link href="/shelf" className="hover:text-indigo-600">
             Shelf
           </Link>
+
           <Link href="/login" className="hover:text-indigo-600">
             Login
           </Link>
+
           <Link
-            href="/register"
+            href="/signup"
             className="rounded-lg bg-indigo-600 px-4 py-2 text-white hover:bg-indigo-700"
           >
-            Register
+            Sign Up
           </Link>
         </div>
       </nav>
