@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { ShelfBook, ShelfStatus } from "@/types";
-import BookCard from "./BookCard";
+import BookCard from "@/components/BookCard";
 
 type Props = {
   items: ShelfBook[];
@@ -23,7 +23,7 @@ const tabs: { label: string; value: ShelfStatus }[] = [
   },
 ];
 
-export default function ShelfTabs({ items }: Props) {
+export default function ShelfTabs({ items = [] }: Props) {
   const [activeTab, setActiveTab] = useState<ShelfStatus>("currently_reading");
 
   const filteredItems = items.filter((item) => item.status === activeTab);

@@ -1,20 +1,7 @@
-"use client";
-
 import Link from "next/link";
 import { BookOpen } from "lucide-react";
-import { useRouter } from "next/navigation";
 
 export default function Navbar() {
-  const router = useRouter();
-
-
-  const handleLogout = () => {
-    localStorage.removeItem("booknest_token");
-    localStorage.removeItem("booknest_refresh_token");
-
-    router.push("/login");
-  };
-
   return (
     <header className="border-b bg-white">
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4">
@@ -36,7 +23,9 @@ export default function Navbar() {
             Shelf
           </Link>
 
-          
+          <Link href="/refresh" className="hover:text-indigo-600">
+            Refresh
+          </Link>
 
           <Link href="/login" className="hover:text-indigo-600">
             Login
@@ -49,12 +38,12 @@ export default function Navbar() {
             Sign Up
           </Link>
 
-          <button
-            onClick={handleLogout}
+          <Link
+            href="/logout"
             className="rounded-lg bg-red-600 px-4 py-2 text-white hover:bg-red-700"
           >
             Logout
-          </button>
+          </Link>
         </div>
       </nav>
     </header>

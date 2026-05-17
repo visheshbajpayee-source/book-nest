@@ -21,7 +21,7 @@ export type ShelfBook = {
 
 export const books: Book[] = [
   {
-    id: "atomic-habits",
+    id: "1",
     title: "Atomic Habits",
     author: "James Clear",
     cover: "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=600&q=80",
@@ -33,7 +33,7 @@ export const books: Book[] = [
     genres: ["Self-help", "Productivity", "Psychology"],
   },
   {
-    id: "psychology-of-money",
+    id: "2",
     title: "The Psychology of Money",
     author: "Morgan Housel",
     cover: "https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=600&q=80",
@@ -45,7 +45,7 @@ export const books: Book[] = [
     genres: ["Finance", "Behavioral Economics", "Memoir"],
   },
   {
-    id: "deep-work",
+    id: "3",
     title: "Deep Work",
     author: "Cal Newport",
     cover: "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=600&q=80",

@@ -2,8 +2,11 @@
 
 import Link from "next/link";
 import React, { useState, ChangeEvent } from "react";
+import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
+  const router = useRouter();
+
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -18,8 +21,16 @@ export default function LoginPage() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(form);
-    alert("Login Form");
+
+    // Backend abhi ready nahi hai, isliye dummy tokens save kar rahe hain
+    localStorage.setItem("booknest_token", "dummy-access-token");
+    localStorage.setItem("booknest_refresh_token", "dummy-refresh-token");
+
+    console.log("Login data:", form);
+
+    alert("Login successful");
+
+    router.push("/dashboard");
   };
 
   return (
