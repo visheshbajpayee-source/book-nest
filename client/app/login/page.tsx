@@ -1,25 +1,37 @@
-'use client';
+"use client";
+
 import Link from "next/link";
-import React ,{useState,ChangeEvent } from "react";
+import React, { useState, ChangeEvent } from "react";
+import { useRouter } from "next/navigation";
 
-export default function LoginPage(){
-     const[form,setForm]=useState({
-        email:"",
-        password:""
-     });
+export default function LoginPage() {
+  const router = useRouter();
 
-    const handleChange=(e: ChangeEvent<HTMLInputElement>)=>{
-        setForm({
-            ...form,
-            [e.target.name]:e.target.value,
+  const [form, setForm] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
     });
-    }
+  };
 
-    const handleSubmit=(e:React.SyntheticEvent<HTMLFormElement>)=>{
-       e.preventDefault();
-       console.log(form);
-       alert("Login Form");
-    }
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    // Backend abhi ready nahi hai, isliye dummy tokens save kar rahe hain
+    localStorage.setItem("booknest_token", "dummy-access-token");
+    localStorage.setItem("booknest_refresh_token", "dummy-refresh-token");
+
+    console.log("Login data:", form);
+
+    alert("Login successful");
+
+    router.push("/dashboard");
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#FAF7F2] px-4">
@@ -34,9 +46,7 @@ export default function LoginPage(){
 
         <form onSubmit={handleSubmit} className="space-y-5">
           <div>
-            <label className="block mb-2 text-sm font-medium">
-              Email
-            </label>
+            <label className="block mb-2 text-sm font-medium">Email</label>
 
             <input
               type="email"
@@ -50,9 +60,7 @@ export default function LoginPage(){
           </div>
 
           <div>
-            <label className="block mb-2 text-sm font-medium">
-              Password
-            </label>
+            <label className="block mb-2 text-sm font-medium">Password</label>
 
             <input
               type="password"
@@ -67,10 +75,7 @@ export default function LoginPage(){
 
           <div className="flex items-center justify-between">
             <label className="flex items-center gap-2 text-sm text-gray-600">
-              <input
-                type="checkbox"
-                className="accent-[#4E2F28] w-4 h-4"
-              />
+              <input type="checkbox" className="accent-[#4E2F28] w-4 h-4" />
               Remember me
             </label>
 
@@ -91,11 +96,8 @@ export default function LoginPage(){
         </form>
 
         <p className="text-center text-sm text-gray-500 mt-6">
-          Don't have an account?{" "}
-          <Link
-            href="/signup"
-            className="text-[#4E2F28] font-semibold"
-          >
+          Don&apos;t have an account?{" "}
+          <Link href="/signup" className="text-[#4E2F28] font-semibold">
             Sign Up
           </Link>
         </p>
