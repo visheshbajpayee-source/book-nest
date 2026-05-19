@@ -46,7 +46,6 @@ export default function BookDetailPage() {
       try {
         setLoading(true);
 
-        // 1. First check dummy/mockData books
         const mockBook = mockBooks.find((item) => item.id === bookId);
 
         if (mockBook) {
@@ -54,7 +53,6 @@ export default function BookDetailPage() {
           return;
         }
 
-        // 2. Then check localStorage shelf books
         const shelfBooks = getShelfBooks();
         const shelfBook = shelfBooks.find((item) => item.book.id === bookId);
 
@@ -63,7 +61,6 @@ export default function BookDetailPage() {
           return;
         }
 
-        // 3. Then fetch from Open Library only if ID looks valid
         if (!bookId.startsWith("OL")) {
           setBook(null);
           return;
@@ -113,7 +110,7 @@ export default function BookDetailPage() {
 
   if (loading) {
     return (
-      <div className="rounded-2xl border bg-white p-10 text-center text-slate-500">
+      <div className="rounded-[32px] border border-[#e7ddd5] bg-white p-12 text-center text-[#6b7280] shadow-xl dark:border-[#2a2a2a] dark:bg-[#181818] dark:text-slate-300">
         Loading book detail...
       </div>
     );
@@ -121,16 +118,18 @@ export default function BookDetailPage() {
 
   if (!book) {
     return (
-      <div className="rounded-2xl border bg-white p-10 text-center">
-        <h1 className="text-2xl font-bold">Book not found</h1>
+      <div className="rounded-[32px] border border-[#e7ddd5] bg-white p-12 text-center shadow-xl dark:border-[#2a2a2a] dark:bg-[#181818]">
+        <h1 className="text-3xl font-bold text-[#5b342b] dark:text-[#f5e9df]">
+          Book not found
+        </h1>
 
-        <p className="mt-2 text-slate-500">
+        <p className="mt-3 text-[#6b7280] dark:text-slate-400">
           This book detail could not be loaded.
         </p>
 
         <Link
           href="/books"
-          className="mt-5 inline-block rounded-xl bg-indigo-600 px-5 py-3 font-medium text-white hover:bg-indigo-700"
+          className="mt-8 inline-block rounded-2xl bg-gradient-to-r from-[#5b342b] to-[#74463a] px-6 py-3 font-semibold text-white shadow-lg transition-all duration-300 hover:-translate-y-1"
         >
           Back to Books
         </Link>
@@ -139,70 +138,96 @@ export default function BookDetailPage() {
   }
 
   return (
-    <div>
-      <div className="mb-6 flex gap-4">
-        <Link href="/books" className="text-sm font-medium text-indigo-600">
+    <div className="min-h-screen bg-[#f8f5f2] p-2 dark:bg-[#111111]">
+      <div className="mb-8 flex flex-wrap gap-5">
+        <Link
+          href="/books"
+          className="text-sm font-semibold text-[#5b342b] transition-all duration-300 hover:translate-x-1 hover:underline dark:text-[#c89b8a]"
+        >
           ← Back to Books
         </Link>
 
-        <Link href="/shelf" className="text-sm font-medium text-indigo-600">
+        <Link
+          href="/shelf"
+          className="text-sm font-semibold text-[#5b342b] transition-all duration-300 hover:translate-x-1 hover:underline dark:text-[#c89b8a]"
+        >
           Go to Shelf
         </Link>
       </div>
 
-      <section className="grid gap-8 lg:grid-cols-[320px_1fr]">
-        <div className="overflow-hidden rounded-2xl border bg-white shadow-sm">
-          <img
-            src={book.cover}
-            alt={book.title}
-            className="h-[480px] w-full object-cover"
-          />
+      <section className="grid gap-10 lg:grid-cols-[340px_1fr]">
+        <div className="group overflow-hidden rounded-[32px] border border-[#e7ddd5] bg-white shadow-xl dark:border-[#2a2a2a] dark:bg-[#181818]">
+          <div className="overflow-hidden">
+            <img
+              src={book.cover}
+              alt={book.title}
+              className="h-[520px] w-full object-cover transition-all duration-700 group-hover:scale-105"
+            />
+          </div>
         </div>
 
-        <div>
-          <h1 className="text-4xl font-bold text-slate-900">{book.title}</h1>
+        <div className="rounded-[32px] border border-[#e7ddd5] bg-white p-8 shadow-xl dark:border-[#2a2a2a] dark:bg-[#181818]">
+          <h1 className="text-5xl font-bold leading-tight text-[#5b342b] dark:text-[#f5e9df]">
+            {book.title}
+          </h1>
 
-          <p className="mt-2 text-lg text-slate-600">by {book.author}</p>
+          <p className="mt-4 text-xl text-[#6b7280] dark:text-slate-400">
+            by {book.author}
+          </p>
 
-          <div className="mt-4 flex flex-wrap gap-3 text-sm text-slate-600">
-            <span>Published: {book.publishedYear}</span>
-            <span>Pages: {book.pages || "N/A"}</span>
-            <span>Rating: {book.rating || 0}</span>
+          <div className="mt-6 flex flex-wrap gap-4 text-sm">
+            <span className="rounded-full bg-[#f3ebe7] px-4 py-2 font-medium text-[#5b342b] dark:bg-[#5b342b]/10 dark:text-[#d8b7a8]">
+              Published: {book.publishedYear}
+            </span>
+
+            <span className="rounded-full bg-[#f3ebe7] px-4 py-2 font-medium text-[#5b342b] dark:bg-[#5b342b]/10 dark:text-[#d8b7a8]">
+              Pages: {book.pages || "N/A"}
+            </span>
+
+            <span className="rounded-full bg-[#f3ebe7] px-4 py-2 font-medium text-[#5b342b] dark:bg-[#5b342b]/10 dark:text-[#d8b7a8]">
+              Rating: {book.rating || 0}
+            </span>
           </div>
 
-          <div className="mt-4 flex flex-wrap gap-2">
+          <div className="mt-6 flex flex-wrap gap-3">
             {book.genres?.length ? (
               book.genres.map((genre) => (
                 <span
                   key={genre}
-                  className="rounded-full bg-indigo-50 px-3 py-1 text-sm font-medium text-indigo-700"
+                  className="rounded-full border border-[#d8d0c8] bg-[#faf7f5] px-4 py-2 text-sm font-semibold text-[#5b342b] transition-all duration-300 hover:-translate-y-1 dark:border-[#333] dark:bg-[#1f1f1f] dark:text-[#f5e9df]"
                 >
                   {genre}
                 </span>
               ))
             ) : (
-              <span className="rounded-full bg-slate-100 px-3 py-1 text-sm text-slate-600">
+              <span className="rounded-full bg-slate-100 px-4 py-2 text-sm text-slate-600 dark:bg-slate-500/10 dark:text-slate-300">
                 No genres
               </span>
             )}
           </div>
 
-          <p className="mt-6 max-w-3xl leading-7 text-slate-700">
-            {book.description || "No description available."}
-          </p>
+          <div className="mt-8 rounded-[28px] bg-[#faf7f5] p-6 dark:bg-[#121212]">
+            <h2 className="text-2xl font-bold text-[#5b342b] dark:text-[#f5e9df]">
+              Description
+            </h2>
 
-          <div className="mt-8 flex gap-3">
+            <p className="mt-5 leading-8 text-[#4b5563] dark:text-slate-300">
+              {book.description || "No description available."}
+            </p>
+          </div>
+
+          <div className="mt-8 flex flex-wrap gap-4">
             <button
               type="button"
               onClick={handleAddShelf}
-              className="rounded-xl bg-indigo-600 px-5 py-3 font-medium text-white hover:bg-indigo-700"
+              className="rounded-2xl bg-gradient-to-r from-[#5b342b] to-[#74463a] px-7 py-4 font-semibold text-white shadow-[0_8px_20px_rgba(91,52,43,0.25)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_28px_rgba(91,52,43,0.4)] active:scale-95"
             >
               Add to Shelf
             </button>
 
             <Link
               href="/shelf"
-              className="rounded-xl border border-slate-300 bg-white px-5 py-3 font-medium hover:bg-slate-50"
+              className="rounded-2xl border border-[#d8d0c8] bg-[#faf7f5] px-7 py-4 font-semibold text-[#5b342b] transition-all duration-300 hover:-translate-y-1 hover:bg-[#f1ebe6] dark:border-[#333] dark:bg-[#1f1f1f] dark:text-[#f5e9df]"
             >
               View Shelf
             </Link>
