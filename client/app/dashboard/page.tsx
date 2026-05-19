@@ -107,7 +107,7 @@ export default function DashboardPage() {
           <div>
             <h2 className="text-2xl font-semibold">Book Progress</h2>
             <p className="mt-1 text-slate-600">
-              Showing progress for 2 books from your shelf.
+              Showing progress for books from your shelf.
             </p>
           </div>
 
