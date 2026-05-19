@@ -114,18 +114,12 @@ export default function DashboardPage() {
       <section className="mt-12">
         <div className="mb-6 flex items-center justify-between gap-4 max-sm:flex-col max-sm:items-start">
           <div>
-<<<<<<< HEAD
-            <h2 className="text-2xl font-semibold">Book Progress</h2>
-            <p className="mt-1 text-slate-600">
-              Showing progress for books from your shelf.
-=======
             <h2 className="text-3xl font-bold text-[#5b342b] dark:text-[#f5e9df]">
               Book Progress
             </h2>
 
             <p className="mt-2 text-[#6b7280] dark:text-slate-400">
               Showing progress for 2 books from your shelf.
->>>>>>> 11e4c7bff7acb5cd86f83455249510316a7b18c0
             </p>
           </div>
 
