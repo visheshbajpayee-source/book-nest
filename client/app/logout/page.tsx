@@ -1,51 +1,43 @@
+"use client";
+
+import { useEffect } from "react";
 import Link from "next/link";
-import { BookOpen } from "lucide-react";
+import { useRouter } from "next/navigation";
 
-export default function Navbar() {
+export default function LogoutPage() {
+  const router = useRouter();
+
+  useEffect(() => {
+    localStorage.removeItem("booknest_token");
+    localStorage.removeItem("booknest_refresh_token");
+  }, []);
+
   return (
-    <header className="border-b bg-white">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4">
-        <Link href="/" className="flex items-center gap-2 text-xl font-bold">
-          <BookOpen className="h-6 w-6 text-indigo-600" />
-          BookNest
-        </Link>
+    <div className="min-h-screen bg-slate-50 px-4 py-16">
+      <div className="mx-auto max-w-xl rounded-4xl border border-slate-200 bg-white p-10 shadow-xl">
+        <h1 className="text-4xl font-bold text-slate-900">You are logged out</h1>
+        <p className="mt-4 text-slate-600">
+          Your session has been ended. You can log back in anytime to continue
+          tracking your reading progress.
+        </p>
 
-        <div className="flex items-center gap-5 text-sm font-medium text-slate-700">
-          <Link href="/dashboard" className="hover:text-indigo-600">
-            Dashboard
-          </Link>
-
-          <Link href="/books" className="hover:text-indigo-600">
-            Books
-          </Link>
-
-          <Link href="/shelf" className="hover:text-indigo-600">
-            Shelf
-          </Link>
-
-          <Link href="/refresh" className="hover:text-indigo-600">
-            Refresh
-          </Link>
-
-          <Link href="/login" className="hover:text-indigo-600">
-            Login
-          </Link>
+        <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+          <button
+            type="button"
+            onClick={() => router.push("/login")}
+            className="rounded-xl bg-indigo-600 px-6 py-3 text-white transition hover:bg-indigo-700"
+          >
+            Login again
+          </button>
 
           <Link
-            href="/signup"
-            className="rounded-lg bg-indigo-600 px-4 py-2 text-white hover:bg-indigo-700"
+            href="/books"
+            className="rounded-xl border border-slate-300 px-6 py-3 text-center text-slate-700 transition hover:bg-slate-100"
           >
-            Sign Up
-          </Link>
-
-          <Link
-            href="/logout"
-            className="rounded-lg bg-red-600 px-4 py-2 text-white hover:bg-red-700"
-          >
-            Logout
+            Browse books
           </Link>
         </div>
-      </nav>
-    </header>
+      </div>
+    </div>
   );
 }

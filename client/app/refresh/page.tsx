@@ -1,6 +1,5 @@
 "use client";
 
-
 import { useState } from "react";
 
 export default function RefreshPage() {
@@ -22,11 +21,9 @@ export default function RefreshPage() {
   };
 
   return (
-    <div className="min-h-[70vh] flex items-center justify-center bg-[#FAF7F2] px-4">
+    <div className="min-h-[70vh] flex items-center justify-center bg-[#FAF7F2] px-4 py-10">
       <div className="bg-white rounded-3xl border border-gray-200 shadow-sm p-8 max-w-md w-full text-center">
-        <h1 className="text-3xl font-bold text-[#4E2F28]">
-          Refresh Token
-        </h1>
+        <h1 className="text-3xl font-bold text-[#4E2F28]">Refresh Token</h1>
 
         <p className="mt-3 text-gray-500">
           This page simulates refreshing the access token.
@@ -40,9 +37,7 @@ export default function RefreshPage() {
         </button>
 
         {message && (
-          <p className="mt-5 text-sm font-medium text-gray-700">
-            {message}
-          </p>
+          <p className="mt-5 text-sm font-medium text-gray-700">{message}</p>
         )}
       </div>
     </div>

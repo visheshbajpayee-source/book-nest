@@ -17,12 +17,12 @@ type Props = {
 
 export default function BookCard({ book }: Props) {
   return (
-    <div className="overflow-hidden rounded-2xl border bg-white shadow-sm transition hover:shadow-md">
-      <div className="h-72 bg-slate-100">
+    <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg">
+      <div className="h-72 bg-slate-100 overflow-hidden">
         <img
           src={book.cover}
           alt={book.title}
-          className="h-full w-full object-cover"
+          className="h-full w-full object-cover transition duration-300 hover:scale-105"
         />
       </div>
 
