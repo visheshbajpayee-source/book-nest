@@ -24,10 +24,10 @@ export default function Navbar() {
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4">
         <Link
           href="/"
-          className="group flex items-center gap-2 text-2xl font-bold text-white"
+          className="group flex items-center gap-2 text-2xl font-bold !text-white"
         >
-          <BookOpen className="h-6 w-6 text-white" />
-          BookNest
+          <BookOpen className="h-6 w-6 !text-white" />
+          <span className="!text-white">BookNest</span>
         </Link>
 
         <div className="flex items-center gap-5 text-sm font-medium text-white">
