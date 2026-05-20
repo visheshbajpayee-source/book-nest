@@ -25,17 +25,11 @@ export default function HomePage() {
         </p>
 
         <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-          <Link
-            href="/books"
-            className="group rounded-2xl bg-gradient-to-r from-[#9d6b61] to-[#74463a] px-8 py-4 text-lg font-semibold text-white shadow-[0_10px_30px_rgba(91,52,43,0.25)] transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_18px_40px_rgba(91,52,43,0.35)] active:scale-95"
-          >
+          <Link href="/books" className="group rounded-2xl bg-gradient-to-r from-[#9d6b61] to-[#74463a] px-8 py-4 text-lg font-semibold text-white shadow-[0_10px_30px_rgba(91,52,43,0.25)] transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_18px_40px_rgba(91,52,43,0.35)] active:scale-95">
             Explore Books
           </Link>
 
-          <Link
-            href="/dashboard"
-            className="rounded-2xl border border-[#d8ccc5] bg-white/80 px-8 py-4 text-lg font-semibold text-[#5b342b] shadow-md backdrop-blur-md transition-all duration-300 hover:-translate-y-2 hover:bg-white hover:shadow-xl dark:border-[#2a2a2a] dark:bg-[#181818] dark:text-[#f5e9df] dark:hover:bg-[#202020]"
-          >
+          <Link href="/dashboard" className="rounded-2xl border border-[#d8ccc5] bg-white/80 px-8 py-4 text-lg font-semibold text-[#5b342b] shadow-md backdrop-blur-md transition-all duration-300 hover:-translate-y-2 hover:bg-white hover:shadow-xl dark:border-[#2a2a2a] dark:bg-[#181818] dark:text-[#f5e9df] dark:hover:bg-[#202020]">
             Open Dashboard
           </Link>
         </div>

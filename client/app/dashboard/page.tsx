@@ -63,6 +63,7 @@ export default function DashboardPage() {
 
   return (
     <div className="min-h-screen bg-[#f8f5f2] p-2 text-[#2e2e2e] dark:bg-[#111111] dark:text-white">
+
       <div className="mb-10 flex items-center justify-between gap-5 max-md:flex-col max-md:items-start">
         <div>
           <h1 className="text-4xl font-bold tracking-tight text-[#5b342b] dark:text-[#f5e9df]">
@@ -76,42 +77,36 @@ export default function DashboardPage() {
 
         <Link
           href="/books"
-          className="rounded-2xl bg-gradient-to-r from-[#9d6b61] to-[#74463a] px-6 py-3 font-semibold text-white shadow-[0_8px_20px_rgba(91,52,43,0.25)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_28px_rgba(91,52,43,0.4)] active:scale-95"
+          className="rounded-2xl bg-gradient-to-r from-[#9d6b61] to-[#74463a] px-6 py-3 font-semibold text-white shadow-[0_8px_20px_rgba(91,52,43,0.25)] transition-all duration-300 hover:-translate-y-1"
         >
           Explore Books
         </Link>
       </div>
 
       <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-        <StatCard
-          title="Books in Shelf"
-          value={totalBooks}
-          className="rounded-[30px] border-0  bg-white text-white shadow-[0_12px_30px_rgba(91,52,43,0.25)] transition-all duration-300 hover:-translate-y-2"
-        />
+        <StatCard title="Books in Shelf" value={totalBooks} />
 
         <StatCard
           title="Currently Reading"
           value={getPercentage(currentlyReadingCount)}
           description={`${currentlyReadingCount} of ${totalBooks} books`}
-          className="rounded-[30px] border border-[#e7ddd5] bg-white shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl dark:border-[#2a2a2a] dark:bg-[#181818]"
         />
 
         <StatCard
           title="Completed"
           value={getPercentage(completedCount)}
           description={`${completedCount} of ${totalBooks} books`}
-          className="rounded-[30px] border border-[#e7ddd5] bg-white shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl dark:border-[#2a2a2a] dark:bg-[#181818]"
         />
 
         <StatCard
           title="Pending"
           value={getPercentage(pendingCount)}
           description={`${pendingCount} of ${totalBooks} books`}
-          className="rounded-[30px] border border-[#e7ddd5] bg-white shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl dark:border-[#2a2a2a] dark:bg-[#181818]"
         />
       </div>
 
       <section className="mt-12">
+
         <div className="mb-6 flex items-center justify-between gap-4 max-sm:flex-col max-sm:items-start">
           <div>
             <h2 className="text-3xl font-bold text-[#5b342b] dark:text-[#f5e9df]">
@@ -125,7 +120,7 @@ export default function DashboardPage() {
 
           <Link
             href="/shelf"
-            className="font-semibold text-[#5b342b] transition-all duration-300 hover:translate-x-1 hover:underline dark:text-[#c89b8a]"
+            className="font-semibold text-[#5b342b] hover:underline dark:text-[#c89b8a]"
           >
             View all shelf →
           </Link>
@@ -138,21 +133,20 @@ export default function DashboardPage() {
             </h3>
 
             <p className="mx-auto mt-4 max-w-xl text-[#6b7280] dark:text-slate-400">
-              Your dashboard is empty because your shelf has no books. Add books
-              from Explore Books to see progress here.
+              Your dashboard is empty because your shelf has no books.
             </p>
 
             <div className="mt-8 flex justify-center gap-4 max-sm:flex-col">
               <Link
                 href="/books"
-                className="rounded-2xl bg-gradient-to-r from-[#9d6b61] to-[#74463a] px-6 py-3 font-semibold text-white shadow-lg transition-all duration-300 hover:-translate-y-1"
+                className="rounded-2xl bg-gradient-to-r from-[#9d6b61] to-[#74463a] px-6 py-3 font-semibold text-white"
               >
                 Explore Books
               </Link>
 
               <Link
                 href="/shelf"
-                className="rounded-2xl border border-[#d8d0c8] bg-[#faf7f5] px-6 py-3 font-semibold text-[#5b342b] transition-all duration-300 hover:-translate-y-1 hover:bg-[#f1ebe6] dark:border-[#333] dark:bg-[#1f1f1f] dark:text-[#f5e9df]"
+                className="rounded-2xl border border-[#d8d0c8] bg-[#faf7f5] px-6 py-3 font-semibold text-[#5b342b]"
               >
                 Open Shelf
               </Link>
@@ -160,6 +154,7 @@ export default function DashboardPage() {
           </div>
         ) : (
           <div className="grid gap-6 md:grid-cols-2">
+
             {progressBooks.map((item) => {
               const statusText = getReadableStatus(item.progress);
               const statusClass = getStatusClass(item.progress);
@@ -167,19 +162,22 @@ export default function DashboardPage() {
               return (
                 <div
                   key={item.id}
-                  className="group rounded-[32px] border border-[#e7ddd5] bg-white p-5 shadow-lg transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl dark:border-[#2a2a2a] dark:bg-[#181818]"
+                  className="group rounded-[32px] border border-[#e7ddd5] bg-white p-5 shadow-lg transition-all duration-500 hover:-translate-y-2 dark:border-[#2a2a2a] dark:bg-[#181818]"
                 >
-                  <div className="flex gap-5">
+
+                  <div className="flex flex-col gap-5 sm:flex-row">
                     <img
                       src={item.book.cover}
                       alt={item.book.title}
-                      className="h-32 w-24 rounded-2xl object-cover shadow-md transition-all duration-500 group-hover:scale-105"
+                      className="h-32 w-24 rounded-2xl object-cover"
                     />
 
                     <div className="min-w-0 flex-1">
-                      <div className="flex items-start justify-between gap-3">
-                        <div>
-                          <h3 className="line-clamp-2 text-xl font-bold text-[#2e2e2e] dark:text-white">
+
+                      <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+
+                        <div className="min-w-0">
+                          <h3 className="line-clamp-2 break-words text-xl font-bold text-[#2e2e2e] dark:text-white">
                             {item.book.title}
                           </h3>
 
@@ -188,11 +186,10 @@ export default function DashboardPage() {
                           </p>
                         </div>
 
-                        <span
-                          className={`shrink-0 rounded-full border px-4 py-1 text-xs font-bold ${statusClass}`}
-                        >
+                        <span className={`w-fit rounded-full border px-4 py-1 text-xs font-bold ${statusClass}`}>
                           {statusText}
                         </span>
+
                       </div>
 
                       <p className="mt-5 text-sm font-semibold text-[#5b342b] dark:text-[#c89b8a]">
@@ -201,40 +198,41 @@ export default function DashboardPage() {
 
                       <div className="mt-3 h-3 overflow-hidden rounded-full bg-[#ece5df] dark:bg-[#2a2a2a]">
                         <div
-                          className="h-3 rounded-full bg-gradient-to-r from-[#5b342b] to-[#8b5a4d] transition-all duration-700"
+                          className="h-3 rounded-full bg-gradient-to-r from-[#5b342b] to-[#8b5a4d]"
                           style={{ width: `${item.progress}%` }}
                         />
                       </div>
-
                       <div className="mt-5 flex gap-3">
                         <Link
                           href={`/books/${item.book.id}`}
-                          className="rounded-xl bg-gradient-to-r from-[#9d6b61] to-[#74463a] px-5 py-2 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-1"
+                          className="rounded-xl bg-gradient-to-r from-[#9d6b61] to-[#74463a] px-5 py-2 text-sm font-semibold text-white"
                         >
                           Details
                         </Link>
 
                         <Link
                           href="/shelf"
-                          className="rounded-xl border border-[#d8d0c8] bg-[#faf7f5] px-5 py-2 text-sm font-semibold text-[#5b342b] transition-all duration-300 hover:-translate-y-1 hover:bg-[#f1ebe6] dark:border-[#333] dark:bg-[#1f1f1f] dark:text-[#f5e9df]"
+                          className="rounded-xl border border-[#d8d0c8] bg-[#faf7f5] px-5 py-2 text-sm font-semibold text-[#5b342b]"
                         >
                           Update
                         </Link>
                       </div>
+
                     </div>
                   </div>
                 </div>
               );
             })}
+
           </div>
         )}
 
         {progressBooks.length === 1 && (
-          <div className="mt-6 rounded-2xl border border-amber-200 bg-amber-50 p-5 text-sm font-medium text-amber-700 dark:border-amber-500/20 dark:bg-amber-500/10 dark:text-amber-300">
-            Only 1 book is available. Add one more book from Explore Books to
-            show 2 books.
+          <div className="mt-6 rounded-2xl border border-amber-200 bg-amber-50 p-5 text-sm font-medium text-amber-700 dark:bg-amber-500/10 dark:text-amber-300">
+            Only 1 book is available. Add one more book to show 2 books.
           </div>
         )}
+
       </section>
     </div>
   );
