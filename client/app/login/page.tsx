@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
+import { api } from "@/lib/api";
 
 export default function LoginPage() {
 
@@ -23,14 +24,33 @@ export default function LoginPage() {
         });
     };
 
-    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        console.log(form);
+        try {
+            const response = await api.post("/users/login", {
+                email: form.email,
+                password: form.password,
+            });
 
-        alert("Login Successful");
+            const { token } = response.data;
+            localStorage.setItem("booknest_token", token);
 
-        router.push("/");
+            alert("Login Successful");
+            router.push("/dashboard");
+        } catch (error: unknown) {
+            const message =
+                typeof error === "object" && error !== null && "response" in error
+                    ? ((error as { response?: { data?: { message?: string } } }).response?.data?.message)
+                    : undefined;
+
+            alert(
+                message ||
+                    (error instanceof Error
+                        ? error.message
+                        : "Login failed. Please check your credentials.")
+            );
+        }
     };
 
     return (

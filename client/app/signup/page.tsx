@@ -2,7 +2,9 @@
 
 import Link from "next/link";
 import React, { useState, ChangeEvent } from "react";
+import { useRouter } from "next/navigation";
 import { Eye, EyeOff } from "lucide-react";
+import { api } from "@/lib/api";
 
 type FormData = {
   username: string;
@@ -12,6 +14,8 @@ type FormData = {
 };
 
 export default function SignupPage() {
+  const router = useRouter();
+
   const [form, setForm] = useState<FormData>({
     username: "",
     email: "",
@@ -29,7 +33,7 @@ export default function SignupPage() {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (form.password !== form.confirmPassword) {
@@ -37,8 +41,25 @@ export default function SignupPage() {
       return;
     }
 
-    console.log(form);
-    alert("Signup Successful");
+    try {
+      const response = await api.post("/users/signup", {
+        name: form.username,
+        userName: form.username,
+        email: form.email,
+        password: form.password,
+      });
+
+      const { token } = response.data;
+      localStorage.setItem("booknest_token", token);
+
+      alert("Signup Successful");
+      router.push("/dashboard");
+    } catch (error: any) {
+      const message =
+        error?.response?.data?.message ||
+        "Signup failed. Please try again.";
+      alert(message);
+    }
   };
 
   return (
