@@ -47,7 +47,11 @@ export default function BooksPage() {
   };
 
   useEffect(() => {
-    fetchBooks("atomic habits");
+    const loadInitialBooks = async () => {
+      await fetchBooks("atomic habits");
+    };
+
+    void loadInitialBooks();
   }, []);
 
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {

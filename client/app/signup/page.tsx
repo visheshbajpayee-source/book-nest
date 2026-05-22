@@ -54,10 +54,28 @@ export default function SignupPage() {
 
       alert("Signup Successful");
       router.push("/dashboard");
-    } catch (error: any) {
-      const message =
-        error?.response?.data?.message ||
-        "Signup failed. Please try again.";
+    } catch (error: unknown) {
+      type ApiError = {
+        response?: {
+          data?: {
+            message?: string;
+          };
+        };
+      };
+
+      let message = "Signup failed. Please try again.";
+
+      if (
+        typeof error === "object" &&
+        error !== null &&
+        "response" in error
+      ) {
+        const apiError = error as ApiError;
+        message = apiError.response?.data?.message || message;
+      } else if (error instanceof Error) {
+        message = error.message;
+      }
+
       alert(message);
     }
   };
