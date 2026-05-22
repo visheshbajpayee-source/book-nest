@@ -56,16 +56,20 @@ export default function DashboardPage() {
 
   if (!mounted) {
     return (
-      <div className="rounded-[30px] border border-[#e7ddd5] bg-white p-10 text-center text-[#6b7280] shadow-lg dark:border-[#2a2a2a] dark:bg-[#181818] dark:text-slate-300">
+
+      <div className="rounded-[50px] border border-[#e7ddd5] bg-white p-10 text-center text-[#6b7280] shadow-lg dark:border-[#2a2a2a] dark:bg-[#181818] dark:text-slate-300">
+
         Loading dashboard...
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-[#f8f5f2] p-2 text-[#2e2e2e] dark:bg-[#111111] dark:text-white">
 
-      <div className="mb-10 flex items-center justify-between gap-5 max-md:flex-col max-md:items-start">
+    <div className="min-h-screen bg-[#f8f5f2] p-2 text-[#2e2e2e] dark:bg-[#eae0de] dark:text-white">
+
+      <div className="mb-20 flex items-center justify-between gap-5 max-md:flex-col max-md:items-start">
+
         <div>
           <h1 className="text-4xl font-bold tracking-tight text-[#5b342b]">
             Dashboard
@@ -127,12 +131,14 @@ export default function DashboardPage() {
         </div>
 
         {progressBooks.length === 0 ? (
-          <div className="rounded-[32px] border border-[#e7ddd5] bg-white p-12 text-center shadow-xl dark:border-[#2a2a2a] dark:bg-[#181818]">
-            <h3 className="text-2xl font-bold text-[#5b342b] dark:text-[#f5e9df]">
+
+          <div className="rounded-[32px] border border-[#e7ddd5] bg-white p-12 text-center shadow-xl dark:border-[#2a2a2a] ">
+            <h3 className="text-2xl font-bold  dark:text-[#0d0d0d]">
               No books added yet
             </h3>
 
-            <p className="mx-auto mt-4 max-w-xl text-[#6b7280] dark:text-slate-400">
+            <p className="mx-auto mt-4 max-w-xl text-[#6b7280] dark:text-slate-600">
+
               Your dashboard is empty because your shelf has no books.
             </p>
 
