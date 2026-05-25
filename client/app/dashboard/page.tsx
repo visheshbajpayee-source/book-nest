@@ -43,33 +43,34 @@ export default function DashboardPage() {
 
   const getStatusClass = (progress: number) => {
     if (progress >= 100) {
-      return "border-emerald-200 bg-emerald-50 text-emerald-700";
+      return "border-emerald-200 bg-emerald-50 text-emerald-700 dark:border-emerald-500/20 dark:bg-emerald-500/10 dark:text-emerald-300";
     }
 
     if (progress > 0) {
-      return "border-amber-200 bg-amber-50 text-amber-700";
+      return "border-amber-200 bg-amber-50 text-amber-700 dark:border-amber-500/20 dark:bg-amber-500/10 dark:text-amber-300";
     }
 
-    return "border-slate-200 bg-slate-50 text-slate-700";
+    return "border-slate-200 bg-slate-50 text-slate-700 dark:border-slate-500/20 dark:bg-slate-500/10 dark:text-slate-300";
   };
 
   if (!mounted) {
     return (
-      <div className="rounded-[30px] border border-[#e7ddd5] bg-white p-10 text-center text-[#6b7280] shadow-lg">
+      <div className="rounded-[30px] border border-[#e7ddd5] bg-white p-10 text-center text-[#6b7280] shadow-lg dark:border-[#2a2a2a] dark:bg-[#181818] dark:text-slate-300">
         Loading dashboard...
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-[#f8f5f2] p-2 text-[#2e2e2e]">
+    <div className="min-h-screen bg-[#f8f5f2] p-2 text-[#2e2e2e] dark:bg-[#111111] dark:text-white">
+
       <div className="mb-10 flex items-center justify-between gap-5 max-md:flex-col max-md:items-start">
         <div>
-          <h1 className="text-4xl font-bold tracking-tight text-[#5b342b]">
+          <h1 className="text-4xl font-bold tracking-tight text-[#5b342b] dark:text-[#f5e9df]">
             Dashboard
           </h1>
 
-          <p className="mt-3 text-[#6b7280]">
+          <p className="mt-3 text-[#6b7280] dark:text-slate-400">
             Track your books, reading status, and progress.
           </p>
         </div>
@@ -105,32 +106,33 @@ export default function DashboardPage() {
       </div>
 
       <section className="mt-12">
+
         <div className="mb-6 flex items-center justify-between gap-4 max-sm:flex-col max-sm:items-start">
           <div>
-            <h2 className="text-3xl font-bold text-[#5b342b]">
+            <h2 className="text-3xl font-bold text-[#5b342b] dark:text-[#f5e9df]">
               Book Progress
             </h2>
 
-            <p className="mt-2 text-[#6b7280]">
+            <p className="mt-2 text-[#6b7280] dark:text-slate-400">
               Showing progress for 2 books from your shelf.
             </p>
           </div>
 
           <Link
             href="/shelf"
-            className="font-semibold text-[#5b342b] hover:underline"
+            className="font-semibold text-[#5b342b] hover:underline dark:text-[#c89b8a]"
           >
             View all shelf →
           </Link>
         </div>
 
         {progressBooks.length === 0 ? (
-          <div className="rounded-[32px] border border-[#e7ddd5] bg-white p-12 text-center shadow-xl">
-            <h3 className="text-2xl font-bold text-[#5b342b]">
+          <div className="rounded-[32px] border border-[#e7ddd5] bg-white p-12 text-center shadow-xl dark:border-[#2a2a2a] dark:bg-[#181818]">
+            <h3 className="text-2xl font-bold text-[#5b342b] dark:text-[#f5e9df]">
               No books added yet
             </h3>
 
-            <p className="mx-auto mt-4 max-w-xl text-[#6b7280]">
+            <p className="mx-auto mt-4 max-w-xl text-[#6b7280] dark:text-slate-400">
               Your dashboard is empty because your shelf has no books.
             </p>
 
@@ -152,6 +154,7 @@ export default function DashboardPage() {
           </div>
         ) : (
           <div className="grid gap-6 md:grid-cols-2">
+
             {progressBooks.map((item) => {
               const statusText = getReadableStatus(item.progress);
               const statusClass = getStatusClass(item.progress);
@@ -159,8 +162,9 @@ export default function DashboardPage() {
               return (
                 <div
                   key={item.id}
-                  className="group rounded-[32px] border border-[#e7ddd5] bg-white p-5 shadow-lg transition-all duration-500 hover:-translate-y-2"
+                  className="group rounded-[32px] border border-[#e7ddd5] bg-white p-5 shadow-lg transition-all duration-500 hover:-translate-y-2 dark:border-[#2a2a2a] dark:bg-[#181818]"
                 >
+
                   <div className="flex flex-col gap-5 sm:flex-row">
                     <img
                       src={item.book.cover}
@@ -169,35 +173,35 @@ export default function DashboardPage() {
                     />
 
                     <div className="min-w-0 flex-1">
+
                       <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+
                         <div className="min-w-0">
-                          <h3 className="line-clamp-2 break-words text-xl font-bold text-[#2e2e2e]">
+                          <h3 className="line-clamp-2 break-words text-xl font-bold text-[#2e2e2e] dark:text-white">
                             {item.book.title}
                           </h3>
 
-                          <p className="mt-1 text-sm text-[#6b7280]">
+                          <p className="mt-1 text-sm text-[#6b7280] dark:text-slate-400">
                             {item.book.author}
                           </p>
                         </div>
 
-                        <span
-                          className={`w-fit rounded-full border px-4 py-1 text-xs font-bold ${statusClass}`}
-                        >
+                        <span className={`w-fit rounded-full border px-4 py-1 text-xs font-bold ${statusClass}`}>
                           {statusText}
                         </span>
+
                       </div>
 
-                      <p className="mt-5 text-sm font-semibold text-[#5b342b]">
+                      <p className="mt-5 text-sm font-semibold text-[#5b342b] dark:text-[#c89b8a]">
                         {item.progress}% complete
                       </p>
 
-                      <div className="mt-3 h-3 overflow-hidden rounded-full bg-[#ece5df]">
+                      <div className="mt-3 h-3 overflow-hidden rounded-full bg-[#ece5df] dark:bg-[#2a2a2a]">
                         <div
                           className="h-3 rounded-full bg-gradient-to-r from-[#5b342b] to-[#8b5a4d]"
                           style={{ width: `${item.progress}%` }}
                         />
                       </div>
-
                       <div className="mt-5 flex gap-3">
                         <Link
                           href={`/books/${item.book.id}`}
@@ -213,19 +217,22 @@ export default function DashboardPage() {
                           Update
                         </Link>
                       </div>
+
                     </div>
                   </div>
                 </div>
               );
             })}
+
           </div>
         )}
 
         {progressBooks.length === 1 && (
-          <div className="mt-6 rounded-2xl border border-amber-200 bg-amber-50 p-5 text-sm font-medium text-amber-700">
+          <div className="mt-6 rounded-2xl border border-amber-200 bg-amber-50 p-5 text-sm font-medium text-amber-700 dark:bg-amber-500/10 dark:text-amber-300">
             Only 1 book is available. Add one more book to show 2 books.
           </div>
         )}
+
       </section>
     </div>
   );
