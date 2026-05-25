@@ -124,20 +124,20 @@ export default function BooksPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#f8f5f2] p-2">
+    <div className="min-h-screen bg-[#f8f5f2] p-2 dark:bg-[#111111]">
       <div className="mb-10">
-        <h1 className="text-4xl font-bold tracking-tight text-[#5b342b]">
+        <h1 className="text-4xl font-bold tracking-tight text-[#5b342b] dark:text-[#f5e9df]">
           Explore Books
         </h1>
 
-        <p className="mt-3 text-[#6b7280]">
+        <p className="mt-3 text-[#6b7280] dark:text-slate-400">
           Search books using the Open Library API.
         </p>
       </div>
 
       <form
         onSubmit={handleSearch}
-        className="mb-10 rounded-[32px] border border-[#e7ddd5] bg-white p-6 shadow-xl"
+        className="mb-10 rounded-[32px] border border-[#e7ddd5] bg-white p-6 shadow-xl dark:border-[#2a2a2a] dark:bg-[#181818]"
       >
         <div className="flex flex-col gap-4 md:flex-row">
           <input
@@ -145,7 +145,7 @@ export default function BooksPage() {
             placeholder="Search book name..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            className="w-full rounded-2xl border border-[#ddd6cf] bg-[#faf7f5] px-5 py-4 text-[#2e2e2e] outline-none transition-all duration-300 placeholder:text-[#9ca3af] focus:border-[#5b342b] focus:ring-4 focus:ring-[#5b342b]/10"
+            className="w-full rounded-2xl border border-[#ddd6cf] bg-[#faf7f5] px-5 py-4 text-[#2e2e2e] outline-none transition-all duration-300 placeholder:text-[#9ca3af] focus:border-[#5b342b] focus:ring-4 focus:ring-[#5b342b]/10 dark:border-[#2a2a2a] dark:bg-[#121212] dark:text-white"
           />
 
           <button
@@ -158,19 +158,19 @@ export default function BooksPage() {
       </form>
 
       {loading && (
-        <div className="rounded-[30px] border border-[#e7ddd5] bg-white p-12 text-center text-[#6b7280] shadow-lg">
+        <div className="rounded-[30px] border border-[#e7ddd5] bg-white p-12 text-center text-[#6b7280] shadow-lg dark:border-[#2a2a2a] dark:bg-[#181818] dark:text-slate-300">
           Loading books...
         </div>
       )}
 
       {error && (
-        <div className="rounded-[30px] border border-red-200 bg-red-50 p-6 text-red-600">
+        <div className="rounded-[30px] border border-red-200 bg-red-50 p-6 text-red-600 dark:border-red-500/20 dark:bg-red-500/10 dark:text-red-300">
           {error}
         </div>
       )}
 
       {!loading && !error && books.length === 0 && (
-        <div className="rounded-[30px] border border-[#e7ddd5] bg-white p-12 text-center text-[#6b7280] shadow-lg">
+        <div className="rounded-[30px] border border-[#e7ddd5] bg-white p-12 text-center text-[#6b7280] shadow-lg dark:border-[#2a2a2a] dark:bg-[#181818] dark:text-slate-300">
           No books found.
         </div>
       )}
@@ -183,26 +183,22 @@ export default function BooksPage() {
             return (
               <div
                 key={book.key}
-                className="group overflow-hidden rounded-[32px] border border-[#e7ddd5] bg-white shadow-lg transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl"
+                className="group overflow-hidden rounded-[32px] border border-[#e7ddd5] bg-white shadow-lg transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl dark:border-[#2a2a2a] dark:bg-[#181818]"
               >
-                <div className="flex h-80 items-center justify-center overflow-hidden bg-[#f3ebe7] p-5">
-                  <img
-                    src={getCoverUrl(book.cover_i)}
-                    alt={book.title}
-                    className="h-full w-auto object-contain transition-all duration-700 group-hover:scale-105"
-                  />
-                </div>
+                <div className="flex h-80 items-center justify-center overflow-hidden bg-[#f3ebe7] p-5 dark:bg-[#121212]">
+                   <img src={getCoverUrl(book.cover_i)} alt={book.title} className="h-full w-auto object-contain transition-all duration-700 group-hover:scale-105"/>
+                  </div>
 
                 <div className="p-5">
-                  <h3 className="line-clamp-2 text-xl font-bold text-[#2e2e2e]">
+                  <h3 className="line-clamp-2 text-xl font-bold text-[#2e2e2e] dark:text-white">
                     {book.title}
                   </h3>
 
-                  <p className="mt-3 text-sm text-[#6b7280]">
+                  <p className="mt-3 text-sm text-[#6b7280] dark:text-slate-400">
                     {book.author_name?.join(", ") || "Unknown Author"}
                   </p>
 
-                  <p className="mt-2 text-sm font-medium text-[#5b342b]">
+                  <p className="mt-2 text-sm font-medium text-[#5b342b] dark:text-[#c89b8a]">
                     Published: {book.first_publish_year || "N/A"}
                   </p>
 
@@ -218,7 +214,7 @@ export default function BooksPage() {
                       type="button"
                       onClick={() => handleAddShelf(book)}
                       disabled={savingBookId === bookId}
-                      className="flex-1 rounded-xl border border-[#d8d0c8] bg-[#faf7f5] px-4 py-3 text-sm font-semibold text-[#5b342b] transition-all duration-300 hover:-translate-y-1 hover:bg-[#f1ebe6] disabled:cursor-not-allowed disabled:opacity-60"
+                      className="flex-1 rounded-xl border border-[#d8d0c8] bg-[#faf7f5] px-4 py-3 text-sm font-semibold text-[#5b342b] transition-all duration-300 hover:-translate-y-1 hover:bg-[#f1ebe6] disabled:cursor-not-allowed disabled:opacity-60 dark:border-[#333] dark:bg-[#1f1f1f] dark:text-[#f5e9df]"
                     >
                       {savingBookId === bookId ? "Saving..." : "Add Shelf"}
                     </button>
