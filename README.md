@@ -37,7 +37,7 @@ BookNest is a full-stack web application where users can:
 - **JWT** — authentication
 - **bcrypt** — password hashing
 - **Multer + Cloudinary** — image uploads
-
+ 
 ### External APIs
 - **Open Library API** — book data (free, no auth required)
 
