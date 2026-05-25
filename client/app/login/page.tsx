@@ -38,10 +38,14 @@ export default function LoginPage() {
 
             alert("Login Successful");
             router.push("/dashboard");
-        } catch (error: any) {
-            const message =
-                error?.response?.data?.message ||
-                "Login failed. Please check your credentials.";
+        } catch (error: unknown) {
+            let message = "Login failed. Please check your credentials.";
+            if (error instanceof Error) {
+                message = error.message;
+            } else if (error && typeof error === "object" && "response" in error) {
+                const err = error as { response?: { data?: { message?: string } } };
+                message = err.response?.data?.message || message;
+            }
             alert(message);
         }
     };

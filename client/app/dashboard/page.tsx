@@ -11,6 +11,7 @@ export default function DashboardPage() {
   const [shelfBooks, setShelfBooks] = useState<ShelfBook[]>([]);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
     setShelfBooks(getShelfBooks());
   }, []);
@@ -62,15 +63,15 @@ export default function DashboardPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#f8f5f2] p-2 text-[#2e2e2e] dark:bg-[#111111] dark:text-white">
+    <div className=" mg-3 min-h-screen bg-[#f8f5f2] p-2 text-[#2e2e2e]  dark:text-white">
 
       <div className="mb-10 flex items-center justify-between gap-5 max-md:flex-col max-md:items-start">
         <div>
-          <h1 className="text-4xl font-bold tracking-tight text-[#5b342b] dark:text-[#f5e9df]">
+          <h1 className="text-4xl font-bold tracking-tight text-[#5b342b] dark:text-[#4e2707]">
             Dashboard
           </h1>
 
-          <p className="mt-3 text-[#6b7280] dark:text-slate-400">
+          <p className="mt-3 text-black/100">
             Track your books, reading status, and progress.
           </p>
         </div>
@@ -109,11 +110,11 @@ export default function DashboardPage() {
 
         <div className="mb-6 flex items-center justify-between gap-4 max-sm:flex-col max-sm:items-start">
           <div>
-            <h2 className="text-3xl font-bold text-[#5b342b] dark:text-[#f5e9df]">
+            <h2 className="text-3xl font-bold text-[#5b342b] dark:text-[#4e2707]">
               Book Progress
             </h2>
 
-            <p className="mt-2 text-[#6b7280] dark:text-slate-400">
+            <p className="mt-2 text-black/100 ">
               Showing progress for 2 books from your shelf.
             </p>
           </div>
@@ -127,12 +128,12 @@ export default function DashboardPage() {
         </div>
 
         {progressBooks.length === 0 ? (
-          <div className="rounded-[32px] border border-[#e7ddd5] bg-white p-12 text-center shadow-xl dark:border-[#2a2a2a] dark:bg-[#181818]">
-            <h3 className="text-2xl font-bold text-[#5b342b] dark:text-[#f5e9df]">
+          <div className="rounded-[32px] border border-[#e7ddd5] bg-white p-12 text-center shadow-xl dark:border-[#0c0c0c] ">
+            <h3 className="text-2xl font-bold text-[#5b342b] dark:text-[#4e2707]">
               No books added yet
             </h3>
 
-            <p className="mx-auto mt-4 max-w-xl text-[#6b7280] dark:text-slate-400">
+            <p className="mx-auto mt-4 max-w-xl text-black/100">
               Your dashboard is empty because your shelf has no books.
             </p>
 
@@ -146,8 +147,7 @@ export default function DashboardPage() {
 
               <Link
                 href="/shelf"
-                className="rounded-2xl border border-[#d8d0c8] bg-[#faf7f5] px-6 py-3 font-semibold text-[#5b342b]"
-              >
+                className="rounded-2xl bg-gradient-to-r from-[#9d6b61] to-[#74463a] px-6 py-3 font-semibold text-white"              >
                 Open Shelf
               </Link>
             </div>

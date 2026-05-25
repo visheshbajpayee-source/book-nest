@@ -54,10 +54,9 @@ export default function SignupPage() {
 
       alert("Signup Successful");
       router.push("/dashboard");
-    } catch (error: any) {
-      const message =
-        error?.response?.data?.message ||
-        "Signup failed. Please try again.";
+    } catch (error) {
+      const e = error as { response?: { data?: { message?: string } } } | undefined;
+      const message = e?.response?.data?.message ?? "Signup failed. Please try again.";
       alert(message);
     }
   };

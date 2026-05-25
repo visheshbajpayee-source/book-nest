@@ -76,6 +76,7 @@ export default function Navbar() {
               Dashboard
             </Link>
 
+
             <Link
               href="/books"
               onClick={(e) => handleProtectedClick(e, "/books")}
