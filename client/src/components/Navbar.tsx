@@ -37,7 +37,9 @@ export default function Navbar() {
     e: React.MouseEvent,
     path: string
   ) => {
-    if (!isLoggedIn) {
+    const token = localStorage.getItem("booknest_token");
+
+    if (!token) {
       e.preventDefault();
       alert("Please login or signup first");
       router.push("/login");
