@@ -16,6 +16,7 @@ export default function Navbar() {
     const token = localStorage.getItem("booknest_token");
 
     if (token) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setIsLoggedIn(true);
     }
   }, []);
@@ -76,7 +77,6 @@ export default function Navbar() {
               Dashboard
             </Link>
 
-
             <Link
               href="/books"
               onClick={(e) => handleProtectedClick(e, "/books")}
@@ -97,19 +97,21 @@ export default function Navbar() {
                   Login
                 </Link>
 
-            <Link href="/signup" className="hover:underline">
-              Signup
-            </Link>
-
-            <button
-              onClick={handleLogout}
-              className="rounded-xl bg-red-600 px-5 py-2 text-white"
-            >
-              Logout
-            </button>
+                <Link href="/signup" className="hover:underline">
+                  Signup
+                </Link>
+              </>
+            ) : (
+              <button
+                onClick={handleLogout}
+                className="rounded-xl bg-red-600 px-5 py-2 text-white"
+              >
+                Logout
+              </button>
+            )}
 
           </div>
-          <button onClick={() => setOpen(true)}className="md:hidden text-white">
+          <button onClick={() => setOpen(true)} className="md:hidden text-white">
             <Menu />
           </button>
         </nav>

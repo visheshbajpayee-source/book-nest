@@ -30,15 +30,10 @@ export default function HomePage() {
             Explore Books
           </Link>
 
-<<<<<<< HEAD
           <Link
             href="/dashboard"
             className="group rounded-2xl bg-gradient-to-r from-[#9d6b61] to-[#74463a] px-8 py-4 text-lg font-semibold text-white shadow-[0_10px_30px_rgba(91,52,43,0.25)] transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_18px_40px_rgba(91,52,43,0.35)] active:scale-95"
           >
-=======
-          <Link href="/dashboard"
-          className="group rounded-2xl bg-gradient-to-r from-[#9d6b61] to-[#74463a] px-8 py-4 text-lg font-semibold text-white shadow-[0_10px_30px_rgba(91,52,43,0.25)] transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_18px_40px_rgba(91,52,43,0.35)] active:scale-95">
->>>>>>> master
             Open Dashboard
           </Link>
         </div>
