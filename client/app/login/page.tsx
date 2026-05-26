@@ -38,18 +38,11 @@ export default function LoginPage() {
 
             alert("Login Successful");
             router.push("/dashboard");
-        } catch (error: unknown) {
+        } catch (error: any) {
             const message =
-                typeof error === "object" && error !== null && "response" in error
-                    ? ((error as { response?: { data?: { message?: string } } }).response?.data?.message)
-                    : undefined;
-
-            alert(
-                message ||
-                    (error instanceof Error
-                        ? error.message
-                        : "Login failed. Please check your credentials.")
-            );
+                error?.response?.data?.message ||
+                "Login failed. Please check your credentials.";
+            alert(message);
         }
     };
 

@@ -18,6 +18,7 @@ export default function BooksPage() {
   const [books, setBooks] = useState<OpenLibraryBook[]>([]);
   const [loading, setLoading] = useState(false);
   const [savingBookId, setSavingBookId] = useState<string | null>(null);
+  const [addedBooks, setAddedBooks] = useState<string[]>([]);
   const [error, setError] = useState("");
 
   const fetchBooks = async (searchText: string) => {
@@ -47,11 +48,8 @@ export default function BooksPage() {
   };
 
   useEffect(() => {
-    const loadInitialBooks = async () => {
-      await fetchBooks("atomic habits");
-    };
-
-    void loadInitialBooks();
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    fetchBooks("atomic habits");
   }, []);
 
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
@@ -115,7 +113,9 @@ export default function BooksPage() {
 
       const result = addBookToShelf(bookToAdd, "want_to_read");
 
-      alert(result.message);
+      if (result.success) {
+        setAddedBooks((prev) => [...prev, bookId]);
+      }
     } catch {
       alert("Failed to add book to shelf.");
     } finally {
@@ -125,19 +125,28 @@ export default function BooksPage() {
 
   return (
     <div className="min-h-screen bg-[#f8f5f2] p-2">
-      <div className="mb-10">
-        <h1 className="text-4xl font-bold tracking-tight text-[#5b342b]">
-          Explore Books
-        </h1>
+      <div className="mb-10 flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
+        <div>
+          <h1 className="text-4xl font-bold tracking-tight text-[#5b342b] dark:text-[#4e2707]">
+            Explore Books
+          </h1>
 
-        <p className="mt-3 text-[#6b7280]">
-          Search books using the Open Library API.
-        </p>
+          <p className="mt-3 text-black/100">
+            Search books using the Open Library API.
+          </p>
+        </div>
+
+        <Link
+          href="/shelf"
+          className="inline-flex items-center justify-center rounded-2xl bg-gradient-to-r from-[#9d6b61] to-[#74463a] px-6 py-3 text-sm font-semibold text-white shadow-[0_8px_20px_rgba(91,52,43,0.25)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_28px_rgba(91,52,43,0.4)] active:scale-95"
+        >
+          Go To Shelf
+        </Link>
       </div>
 
       <form
         onSubmit={handleSearch}
-        className="mb-10 rounded-[32px] border border-[#e7ddd5] bg-white p-6 shadow-xl"
+        className="mb-10 rounded-[32px] border border-[#e7ddd5] bg-white p-6 shadow-xl dark:border-[#2a2a2a] dark:bg-[#dac8c8]"
       >
         <div className="flex flex-col gap-4 md:flex-row">
           <input
@@ -145,7 +154,7 @@ export default function BooksPage() {
             placeholder="Search book name..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            className="w-full rounded-2xl border border-[#ddd6cf] bg-[#faf7f5] px-5 py-4 text-[#2e2e2e] outline-none transition-all duration-300 placeholder:text-[#9ca3af] focus:border-[#5b342b] focus:ring-4 focus:ring-[#5b342b]/10"
+            className="w-full rounded-2xl border border-[#ddd6cf] bg-[#faf7f5] px-5 py-4 text-black outline-none transition-all duration-300 placeholder:text-[#9ca3af] focus:border-[#5b342b] focus:ring-4 focus:ring-[#5b342b]/10 dark:border-[#2a2a2a]"
           />
 
           <button
@@ -158,19 +167,19 @@ export default function BooksPage() {
       </form>
 
       {loading && (
-        <div className="rounded-[30px] border border-[#e7ddd5] bg-white p-12 text-center text-[#6b7280] shadow-lg">
+        <div className="rounded-[30px] border border-[#e7ddd5] bg-white p-12 text-center text-black shadow-lg dark:border-[#2a2a2a]">
           Loading books...
         </div>
       )}
 
       {error && (
-        <div className="rounded-[30px] border border-red-200 bg-red-50 p-6 text-red-600">
+        <div className="rounded-[30px] border border-red-200 bg-red-50 p-6 text-red-600 dark:border-red-500/20 dark:bg-red-500/10 dark:text-red-300">
           {error}
         </div>
       )}
 
       {!loading && !error && books.length === 0 && (
-        <div className="rounded-[30px] border border-[#e7ddd5] bg-white p-12 text-center text-[#6b7280] shadow-lg">
+        <div className="rounded-[30px] border border-[#e7ddd5] bg-white p-12 text-center text-[#6b7280] shadow-lg dark:text-slate-300">
           No books found.
         </div>
       )}
@@ -183,7 +192,7 @@ export default function BooksPage() {
             return (
               <div
                 key={book.key}
-                className="group overflow-hidden rounded-[32px] border border-[#e7ddd5] bg-white shadow-lg transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl"
+                className="group overflow-hidden rounded-[32px] border border-[#e7ddd5] bg-white shadow-lg transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl dark:border-[#2a2a2a] dark:bg-[#dac8c8]"
               >
                 <div className="flex h-80 items-center justify-center overflow-hidden bg-[#f3ebe7] p-5">
                   <img
@@ -194,22 +203,22 @@ export default function BooksPage() {
                 </div>
 
                 <div className="p-5">
-                  <h3 className="line-clamp-2 text-xl font-bold text-[#2e2e2e]">
+                  <h3 className="line-clamp-2 text-xl font-bold text-[#2e2e2e] dark:text-black">
                     {book.title}
                   </h3>
 
-                  <p className="mt-3 text-sm text-[#6b7280]">
+                  <p className="mt-3 text-sm text-black/100">
                     {book.author_name?.join(", ") || "Unknown Author"}
                   </p>
 
-                  <p className="mt-2 text-sm font-medium text-[#5b342b]">
+                  <p className="mt-2 text-sm font-medium text-[#5b342b] dark:text-[#24110a]">
                     Published: {book.first_publish_year || "N/A"}
                   </p>
 
                   <div className="mt-6 flex gap-3">
                     <Link
                       href={`/books/${bookId}`}
-                      className="flex-1 rounded-xl bg-gradient-to-r from-[#9d6b61] to-[#74463a] px-4 py-3 text-center text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-1"
+                      className="flex-1 rounded-xl bg-gradient-to-r from-[#9d6b61] to-[#74463a] px-4 py-3 text-center text-sm font-semibold text-white"
                     >
                       Details
                     </Link>
@@ -217,10 +226,21 @@ export default function BooksPage() {
                     <button
                       type="button"
                       onClick={() => handleAddShelf(book)}
-                      disabled={savingBookId === bookId}
-                      className="flex-1 rounded-xl border border-[#d8d0c8] bg-[#faf7f5] px-4 py-3 text-sm font-semibold text-[#5b342b] transition-all duration-300 hover:-translate-y-1 hover:bg-[#f1ebe6] disabled:cursor-not-allowed disabled:opacity-60"
+                      disabled={
+                        savingBookId === bookId ||
+                        addedBooks.includes(bookId)
+                      }
+                      className={`flex-1 rounded-xl px-4 py-3 text-center text-sm font-semibold text-black/100  ${
+                        addedBooks.includes(bookId)
+                          ? "cursor-not-allowed bg-[#6b342b] opacity-70"
+                          : "bg-gradient-to-r from-[#9d6b61] to-[#74463a] hover:-translate-y-1"
+                      }`}
                     >
-                      {savingBookId === bookId ? "Saving..." : "Add Shelf"}
+                      {savingBookId === bookId
+                        ? "Saving..."
+                        : addedBooks.includes(bookId)
+                        ? " Added"
+                        : "Add Shelf"}
                     </button>
                   </div>
                 </div>
