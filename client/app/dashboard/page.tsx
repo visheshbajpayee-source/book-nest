@@ -56,30 +56,22 @@ export default function DashboardPage() {
 
   if (!mounted) {
     return (
-<<<<<<< HEAD
+
 
       <div className="rounded-[50px] border border-[#e7ddd5] bg-white p-10 text-center text-[#6b7280] shadow-lg dark:border-[#2a2a2a] dark:bg-[#181818] dark:text-slate-300">
 
-=======
-      <div className="rounded-[30px] border border-[#e7ddd5] bg-white p-10 text-center text-[#6b7280] shadow-lg dark:border-[#2a2a2a] dark:bg-[#181818] dark:text-slate-300">
->>>>>>> master
         Loading dashboard...
       </div>
     );
   }
 
   return (
-<<<<<<< HEAD
+
 
     <div className="min-h-screen bg-[#f8f5f2] p-2 text-[#2e2e2e] dark:bg-[#eae0de] dark:text-white">
 
       <div className="mb-20 flex items-center justify-between gap-5 max-md:flex-col max-md:items-start">
 
-=======
-    <div className=" mg-3 min-h-screen bg-[#f8f5f2] p-2 text-[#2e2e2e]  dark:text-white">
-
-      <div className="mb-10 flex items-center justify-between gap-5 max-md:flex-col max-md:items-start">
->>>>>>> master
         <div>
           <h1 className="text-4xl font-bold tracking-tight text-[#5b342b] dark:text-[#4e2707]">
             Dashboard
@@ -134,31 +126,20 @@ export default function DashboardPage() {
           </div>
 
           <Link
-            href="/shelf"
-            className="font-semibold text-[#5b342b] hover:underline dark:text-[#c89b8a]"
-          >
-            View all shelf →
+              href="/shelf"
+              className="font-semibold hover:underline text-black"
+            >
+              View all shelf →
           </Link>
         </div>
 
         {progressBooks.length === 0 ? (
-<<<<<<< HEAD
-
-          <div className="rounded-[32px] border border-[#e7ddd5] bg-white p-12 text-center shadow-xl dark:border-[#2a2a2a] ">
-            <h3 className="text-2xl font-bold  dark:text-[#0d0d0d]">
-              No books added yet
-            </h3>
-
-            <p className="mx-auto mt-4 max-w-xl text-[#6b7280] dark:text-slate-600">
-
-=======
           <div className="rounded-[32px] border border-[#e7ddd5] bg-white p-12 text-center shadow-xl dark:border-[#0c0c0c] ">
             <h3 className="text-2xl font-bold text-[#5b342b] dark:text-[#4e2707]">
               No books added yet
             </h3>
 
             <p className="mx-auto mt-4 max-w-xl text-black/100">
->>>>>>> master
               Your dashboard is empty because your shelf has no books.
             </p>
 
@@ -172,12 +153,8 @@ export default function DashboardPage() {
 
               <Link
                 href="/shelf"
-<<<<<<< HEAD
                 className="rounded-2xl bg-gradient-to-r from-[#9d6b61] to-[#74463a] px-6 py-3 font-semibold text-white"
               >
-=======
-                className="rounded-2xl bg-gradient-to-r from-[#9d6b61] to-[#74463a] px-6 py-3 font-semibold text-white"              >
->>>>>>> master
                 Open Shelf
               </Link>
             </div>
@@ -192,7 +169,7 @@ export default function DashboardPage() {
               return (
                 <div
                   key={item.id}
-                  className="group rounded-[32px] border border-[#e7ddd5] bg-white p-5 shadow-lg transition-all duration-500 hover:-translate-y-2 dark:border-[#2a2a2a] dark:bg-[#181818]"
+                  className="group rounded-[32px] border border-[#e7ddd5] bg-white p-5 shadow-lg transition-all duration-500 hover:-translate-y-2 "
                 >
 
                   <div className="flex flex-col gap-5 sm:flex-row">
@@ -207,11 +184,11 @@ export default function DashboardPage() {
                       <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
 
                         <div className="min-w-0">
-                          <h3 className="line-clamp-2 break-words text-xl font-bold text-[#2e2e2e] dark:text-white">
+                          <h3 className="line-clamp-2 break-words text-xl font-bold text-[#2e2e2e] dark:text-black">
                             {item.book.title}
                           </h3>
 
-                          <p className="mt-1 text-sm text-[#6b7280] dark:text-slate-400">
+                          <p className="mt-1 text-sm text-[#6b7280] dark:text-black/100">
                             {item.book.author}
                           </p>
                         </div>
@@ -226,7 +203,7 @@ export default function DashboardPage() {
                         {item.progress}% complete
                       </p>
 
-                      <div className="mt-3 h-3 overflow-hidden rounded-full bg-[#ece5df] dark:bg-[#2a2a2a]">
+                      <div className="mt-3 h-3 overflow-hidden rounded-full bg-[#ecc3a0] ">
                         <div
                           className="h-3 rounded-full bg-gradient-to-r from-[#5b342b] to-[#8b5a4d]"
                           style={{ width: `${item.progress}%` }}
@@ -235,14 +212,14 @@ export default function DashboardPage() {
                       <div className="mt-5 flex gap-3">
                         <Link
                           href={`/books/${item.book.id}`}
-                          className="rounded-xl bg-gradient-to-r from-[#9d6b61] to-[#74463a] px-5 py-2 text-sm font-semibold text-white"
+                          className="rounded-xl bg-gradient-to-r from-[#9d6b61] to-[#74463a] px-5 py-2 text-sm font-semibold text-black"
                         >
                           Details
                         </Link>
 
                         <Link
                           href="/shelf"
-                          className="rounded-xl border border-[#d8d0c8] bg-[#faf7f5] px-5 py-2 text-sm font-semibold text-[#5b342b]"
+                          className="rounded-xl bg-gradient-to-r from-[#9d6b61] to-[#74463a] px-5 py-2 text-sm font-semibold text-black"
                         >
                           Update
                         </Link>
@@ -258,7 +235,7 @@ export default function DashboardPage() {
         )}
 
         {progressBooks.length === 1 && (
-          <div className="mt-6 rounded-2xl border border-amber-200 bg-amber-50 p-5 text-sm font-medium text-amber-700 dark:bg-amber-500/10 dark:text-amber-300">
+          <div className="mt-6 rounded-2xl border border-amber-200 bg-amber-50 p-5 text-sm font-medium text-amber-700 dark:bg-amber-500/10 dark:text-black/100">
             Only 1 book is available. Add one more book to show 2 books.
           </div>
         )}

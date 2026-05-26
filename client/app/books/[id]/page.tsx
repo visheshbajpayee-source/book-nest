@@ -138,7 +138,7 @@ export default function BookDetailPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#f8f5f2] p-2 dark:bg-[#111111]">
+    <div className="min-h-screen bg-[#f8f5f2] p-2">
       <div className="mb-8 flex flex-wrap gap-5">
         <Link
           href="/books"
@@ -146,7 +146,7 @@ export default function BookDetailPage() {
         >
           ← Back to Books
         </Link>
-
+        
         <Link
           href="/shelf"
           className="text-sm font-semibold text-[#5b342b] transition-all duration-300 hover:translate-x-1 hover:underline dark:text-[#c89b8a]"
@@ -156,7 +156,7 @@ export default function BookDetailPage() {
       </div>
 
       <section className="grid gap-10 lg:grid-cols-[340px_1fr]">
-        <div className="group overflow-hidden rounded-[32px] border border-[#e7ddd5] bg-white shadow-xl dark:border-[#2a2a2a] dark:bg-[#181818]">
+        <div className="group overflow-hidden rounded-[32px] border border-[#e7ddd5] bg-white shadow-xl ">
           <div className="overflow-hidden">
             <img
               src={book.cover}
@@ -166,25 +166,25 @@ export default function BookDetailPage() {
           </div>
         </div>
 
-        <div className="rounded-[32px] border border-[#e7ddd5] bg-white p-8 shadow-xl dark:border-[#2a2a2a] dark:bg-[#181818]">
-          <h1 className="text-5xl font-bold leading-tight text-[#5b342b] dark:text-[#f5e9df]">
+        <div className="rounded-[32px] border border-[#e7ddd5] bg-white p-8 shadow-xl dark:border-[#2a2a2a] ">
+          <h1 className="text-5xl font-bold leading-tight text-[#5b342b] dark:text-[#0c0c0c]">
             {book.title}
           </h1>
 
-          <p className="mt-4 text-xl text-[#6b7280] dark:text-slate-400">
+          <p className="mt-4 text-xl text-[#6b7280] dark:text-black/80">
             by {book.author}
           </p>
 
           <div className="mt-6 flex flex-wrap gap-4 text-sm">
-            <span className="rounded-full bg-[#f3ebe7] px-4 py-2 font-medium text-[#5b342b] dark:bg-[#5b342b]/10 dark:text-[#d8b7a8]">
+            <span className="rounded-full bg-[#f3ebe7] px-4 py-2 font-medium text-[#5b342b] dark:bg-[#5b342b]/10 dark:text-black/100">
               Published: {book.publishedYear}
             </span>
 
-            <span className="rounded-full bg-[#f3ebe7] px-4 py-2 font-medium text-[#5b342b] dark:bg-[#5b342b]/10 dark:text-[#d8b7a8]">
+            <span className="rounded-full bg-[#f3ebe7] px-4 py-2 font-medium text-[#5b342b] dark:bg-[#5b342b]/10 dark:text-black/100">
               Pages: {book.pages || "N/A"}
             </span>
 
-            <span className="rounded-full bg-[#f3ebe7] px-4 py-2 font-medium text-[#5b342b] dark:bg-[#5b342b]/10 dark:text-[#d8b7a8]">
+            <span className="rounded-full bg-[#f3ebe7] px-4 py-2 font-medium text-[#5b342b] dark:bg-[#5b342b]/10 dark:text-black/100">
               Rating: {book.rating || 0}
             </span>
           </div>
@@ -194,24 +194,24 @@ export default function BookDetailPage() {
               book.genres.map((genre) => (
                 <span
                   key={genre}
-                  className="rounded-full border border-[#d8d0c8] bg-[#faf7f5] px-4 py-2 text-sm font-semibold text-[#5b342b] transition-all duration-300 hover:-translate-y-1 dark:border-[#333] dark:bg-[#1f1f1f] dark:text-[#f5e9df]"
+                  className="rounded-full border border-[#d8d0c8] bg-[#faf7f5] px-4 py-2 text-sm font-semibold text-[#5b342b] transition-all duration-300 hover:-translate-y-1 dark:border-[#333] dark:bg-[#1f1f1f] dark:text-black/100"
                 >
                   {genre}
                 </span>
               ))
             ) : (
-              <span className="rounded-full bg-slate-100 px-4 py-2 text-sm text-slate-600 dark:bg-slate-500/10 dark:text-slate-300">
+              <span className="rounded-full bg-slate-100 px-4 py-2 text-sm text-slate-600 dark:bg-slate-500/10 dark:text-black">
                 No genres
               </span>
             )}
           </div>
 
-          <div className="mt-8 rounded-[28px] bg-[#faf7f5] p-6 dark:bg-[#121212]">
-            <h2 className="text-2xl font-bold text-[#5b342b] dark:text-[#f5e9df]">
+          <div className="mt-8 rounded-[28px] bg-[#faf7f5] p-6 ">
+            <h2 className="text-2xl font-bold text-[#5b342b] dark:text-black">
               Description
             </h2>
 
-            <p className="mt-5 leading-8 text-[#4b5563] dark:text-slate-300">
+            <p className="mt-5 leading-8 text-[#4b5563] dark:text-black">
               {book.description || "No description available."}
             </p>
           </div>
@@ -227,7 +227,7 @@ export default function BookDetailPage() {
 
             <Link
               href="/shelf"
-              className="rounded-2xl border border-[#d8d0c8] bg-[#faf7f5] px-7 py-4 font-semibold text-[#5b342b] transition-all duration-300 hover:-translate-y-1 hover:bg-[#f1ebe6] dark:border-[#333] dark:bg-[#1f1f1f] dark:text-[#f5e9df]"
+              className="rounded-2xl bg-gradient-to-r from-[#5b342b] to-[#74463a] px-7 py-4 font-semibold text-white shadow-[0_8px_20px_rgba(91,52,43,0.25)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_28px_rgba(91,52,43,0.4)] active:scale-95"
             >
               View Shelf
             </Link>
